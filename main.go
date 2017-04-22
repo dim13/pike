@@ -8,9 +8,9 @@ import (
 )
 
 func handler(w http.ResponseWriter, r *http.Request) {
-	log.Println(r.RemoteAddr, r.Method, r.RequestURI)
+	log.Println(r.RemoteAddr, r.Method, r.RequestURI, r.UserAgent())
 	defer func(t time.Time) {
-		log.Println(r.RemoteAddr, "gives up after", time.Since(t))
+		log.Println(r.RemoteAddr, time.Since(t), "wasted")
 	}(time.Now())
 
 	flusher, ok := w.(http.Flusher)
